@@ -61,7 +61,7 @@ dob.setAttribute("max", max.toISOString().slice(0, 10));
 dob.addEventListener("change", () => {
     const age = Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10);
     if (age < 18 || age > 55) {
-        dob.setCustomValidity("Please enter age between 18 & 65");
+        dob.setCustomValidity("Please enter age between 18 & 55");
     } else {
         dob.setCustomValidity("");
     }
