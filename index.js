@@ -37,11 +37,6 @@ const saveUserForm = (event) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const dob = document.getElementById("dob").value;
-    const age = Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10);
-    if (age < 18 || age > 55) {
-        alert("Please enter age between 18 & 55");
-        return exit;
-    }
     const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
     const entry = {
         name,
@@ -57,3 +52,17 @@ const saveUserForm = (event) => {
 userForm.addEventListener("submit", saveUserForm);
 console.log(document.getElementById("name").value);
 displayEntries();
+
+const today = new Date();
+const min = new Date(today.getFullYear() - 55, today.getMonth(), today.getDate());
+const max = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+dob.setAttribute("min", min.toISOString().slice(0, 10));
+dob.setAttribute("max", max.toISOString().slice(0, 10));
+dob.addEventListener("change", () => {
+    const age = Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10);
+    if (age < 18 || age > 55) {
+        dob.setCustomValidity("Please enter age between 18 & 65");
+    } else {
+        dob.setCustomValidity("");
+    }
+});
