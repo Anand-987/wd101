@@ -38,8 +38,8 @@ const saveUserForm = (event) => {
     const password = document.getElementById("password").value;
     const dob = document.getElementById("dob").value;
     const age = Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10);
-    if (age < 18 || age > 65) {
-        alert("Please enter age between 18 & 65");
+    if (age < 18 || age > 55) {
+        alert("Please enter age between 18 & 55");
         return exit;
     }
     const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
